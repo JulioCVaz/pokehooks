@@ -28,7 +28,7 @@ class App extends React.Component{
 
   render(){
     const { pokemons, selectedPokemon, pokemonFinded } = this.state;
-    console.log(pokemonFinded.length);
+    console.log(pokemonFinded);
     return (
       <div>
         <div>
