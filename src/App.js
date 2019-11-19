@@ -7,7 +7,6 @@ class App extends React.Component{
     pokemons: [],
     qtdPokemons: 0,
     pokemonFinded: [],
-    pokemonChain: [],
     selectedPokemon: ''
   }
 
@@ -18,15 +17,10 @@ class App extends React.Component{
   }
 
   handleSearchPokemon = async (pokemonName) => {
-    // promise hell para exemplo no meetup 
-    await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).
-            then((response) => response.json()).
-            then(json => this.setState({pokemonFinded: [json]}, 
-              () => fetch(`https://pokeapi.co/api/v2/evolution-chain/${this.state.pokemonFinded[0].id}`).
-                     then(response => response.json()).
-                     then(json => this.setState({pokemonChain: [json]})).
-                     catch((err) => console.log(err)))).
-            catch((err) => console.log(err));
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+    const pokemonFinded = await response.json();
+
+    this.setState({pokemonFinded: [pokemonFinded]})
   }
 
   activeItem = (e) => {
@@ -35,9 +29,8 @@ class App extends React.Component{
   } 
 
   render(){
-    const { pokemons, selectedPokemon, pokemonFinded, pokemonChain } = this.state;
+    const { pokemons, selectedPokemon, pokemonFinded } = this.state;
     console.log(pokemonFinded);
-    console.log(pokemonChain);
     return (
       <div>
         <div>
