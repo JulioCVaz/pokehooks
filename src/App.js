@@ -23,23 +23,23 @@ class App extends React.Component{
     this.setState({pokemonFinded: [pokemonFinded]})
   }
 
-  activeItem = (e) => {
+  activeItem = (e, index) => {
     let pokemonName = e.target.innerText;
-    this.setState({selectedPokemon: pokemonName}, () => this.handleSearchPokemon(pokemonName));
+    this.setState({selectedPokemon: pokemonName, activeIndex: index}, () => this.handleSearchPokemon(pokemonName));
   } 
 
   render(){
-    const { pokemons, selectedPokemon, pokemonFinded } = this.state;
+    const { pokemons, selectedPokemon, pokemonFinded, activeIndex } = this.state;
     console.log(pokemonFinded);
     return (
-      <div>
+      <div className="container">
         <div>
           <h1>{selectedPokemon}</h1>
           <nav>
-            <ul style={{overflow:"hidden", overflowY :"scroll", height:"200px", width: "150px"}}>
+            <ul className="list-pokemon">
               {
                 pokemons.map((pokemon, index) => (
-                  <li onClick={(e) => this.activeItem(e)} key={index}>
+                  <li className={ (index === activeIndex) ? "list-pokemon_item active" : "list-pokemon_item"} onClick={(e) => this.activeItem(e, index)} key={index}>
                     <span style={{display: "none"}}>{pokemon.url}</span>
                     {pokemon.name}
                   </li>
