@@ -40,7 +40,7 @@ class App extends React.Component{
               {
                 pokemons.map((pokemon, index) => (
                   <li className={ (index === activeIndex) ? "list-pokemon_item active" : "list-pokemon_item"} onClick={(e) => this.activeItem(e, index)} key={index}>
-                    <span style={{display: "none"}}>{pokemon.url}</span>
+                    <span className="disabled">{pokemon.url}</span>
                     {pokemon.name}
                   </li>
                 ))
