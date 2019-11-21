@@ -67,7 +67,7 @@ body{
     background-color: #dd3e2b;
     border-left: 5px solid #dd3e2b;
     border-right: 5px solid #dd3e2b;
-    border-bottom: 120px solid #dd3e2b;
+    border-bottom: 25px solid #dd3e2b;
 }
 
 .pokedex-header{
@@ -138,6 +138,42 @@ body{
     height: 280px;
 }
 
+.pokedex-controls{
+    display: flex;
+    justify-content: space-around;
+}
+
+.plus-direction{
+    color: #383838;
+    font-size: 140px;
+    text-align: start;
+    font-weight: bold;
+}
+
+.plus-direction div:nth-child(n+1){
+    align-self: flex-end;
+}
+
+.wrapper-commands{
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+
+.command-one{
+    width: 40px;
+    height: 40px;
+    background: #28aafd;
+    border-radius: 100%;
+    margin-right: 50px;
+}
+
+.command-two{
+    width: 40px;
+    height: 40px;
+    background: #28aafd;
+    border-radius: 100%;
+}
 /* SCROLL BAR */
 /* width */
 ::-webkit-scrollbar {

@@ -77,6 +77,13 @@ class App extends React.Component{
               }
             </div>
           </div>
+          <div className="pokedex-controls">
+            <div className="plus-direction">+</div>
+            <div className="wrapper-commands">
+              <div className="command-one"></div>
+              <div className="command-two"></div>
+            </div>
+          </div>
         </div>
       </div>
     );
