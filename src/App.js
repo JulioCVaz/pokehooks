@@ -25,39 +25,56 @@ class App extends React.Component{
 
   activeItem = (e, index) => {
     let pokemonName = e.target.innerText;
-    this.setState({selectedPokemon: pokemonName, activeIndex: index}, () => this.handleSearchPokemon(pokemonName));
+    this.setState({activeIndex: index}, () => this.handleSearchPokemon(pokemonName));
   } 
 
   render(){
-    const { pokemons, selectedPokemon, pokemonFinded, activeIndex } = this.state;
+    const { pokemons, pokemonFinded, activeIndex } = this.state;
     console.log(pokemonFinded);
     return (
       <div className="container">
-        <div>
-          <h1>{selectedPokemon}</h1>
-          <nav>
-            <ul className="list-pokemon">
+        <div className="pokedex-moldure">
+          <div className="pokedex-header">
+            <div className="circle-main"></div>
+            <div className="circle-one"></div>
+            <div className="circle-two"></div>
+            <div className="circle-tree"></div>
+          </div>
+          <div className="pokedex-content">
+            <div className="wrapper-list">
+              <nav>
+                <ul className="list-pokemon">
+                  {
+                    pokemons.map((pokemon, index) => (
+                      <li className={ (index === activeIndex) ? "list-pokemon_item active" : "list-pokemon_item"} onClick={(e) => this.activeItem(e, index)} key={index}>
+                        <span className="disabled">{pokemon.url}</span>
+                        {pokemon.name}
+                      </li>
+                    ))
+                  }
+                  </ul>
+                </nav>
+            </div>
+            <div className="wrapper-avatar">
               {
-                pokemons.map((pokemon, index) => (
-                  <li className={ (index === activeIndex) ? "list-pokemon_item active" : "list-pokemon_item"} onClick={(e) => this.activeItem(e, index)} key={index}>
-                    <span className="disabled">{pokemon.url}</span>
-                    {pokemon.name}
-                  </li>
+                (pokemonFinded.length > 0) && pokemonFinded.map(pokemon => (
+                  <div key={pokemon.id}>
+                    <img src={pokemon.sprites.front_default} />
+                    <h3>{pokemon.name}</h3>
+                    <div className="abilities-list">
+                      {
+                        pokemon.abilities.map((ability, index) => (
+                          <div key={index} className="ability-list_item">{ability.ability.name}</div>
+                        ))
+                      }
+                      <div></div>
+                    </div>
+                  </div>
                 ))
               }
-              </ul>
-            </nav>
+            </div>
           </div>
-          <div>
-            {
-              (pokemonFinded.length > 0) && pokemonFinded.map(pokemon => (
-                <div key={pokemon.id}>
-                  <h3>{pokemon.name}</h3>
-                  <img src={pokemon.sprites.front_default} />
-                </div>
-              ))
-            }
-          </div>
+        </div>
       </div>
     );
   }
