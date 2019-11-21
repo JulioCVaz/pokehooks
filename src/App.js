@@ -59,8 +59,10 @@ class App extends React.Component{
               {
                 (pokemonFinded.length > 0) && pokemonFinded.map(pokemon => (
                   <div key={pokemon.id}>
-                    <img src={pokemon.sprites.front_default} />
-                    <h3>{pokemon.name}</h3>
+                    <div className="pokemon-avatar">
+                      <img src={pokemon.sprites.front_default} />
+                    </div>
+                    <h3 className="pokemon-name">{pokemon.name}</h3>
                     <div className="abilities-list">
                       {
                         pokemon.abilities.map((ability, index) => (

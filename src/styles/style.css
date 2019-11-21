@@ -7,8 +7,9 @@
 .list-pokemon{
     list-style-type: none;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: overlay;
     height: 200px;
+    padding: initial;
 }
 
 .list-pokemon_item{
@@ -17,6 +18,7 @@
     border: 1px solid #ccc;
     text-align: center;
     cursor: pointer;
+    background-color: white;
 }
 
 .active{
@@ -46,7 +48,10 @@
 }
 
 .ability-list_item{
-    width: 50%;
+    width: 40%;
+    background-color: white;
+    text-align: center;
+    margin-top: 7px;
 }
 
 .pokedex-moldure{
@@ -96,4 +101,15 @@
     border-radius: 100%;
     border: 1px solid #7b3434;
     margin-left: 5px;
+}
+
+.pokemon-avatar{
+    width: 100%;
+    background: white;
+    height: 96px;
+}
+
+.pokemon-name{
+    color: white;
+    font-size: 24px;
 }
