@@ -32,7 +32,7 @@
 
 .wrapper-list{
     width: 300px;
-    padding-right: 70px;
+    padding-right: 10px;
 }
 
 .wrapper-avatar{
@@ -55,8 +55,11 @@
 }
 
 .pokedex-moldure{
-    background-color: #dd3e2b;
     border-radius: 25px 25px 0 0;
+    background-color: #dd3e2b;
+    border-left: 5px solid #dd3e2b;
+    border-right: 5px solid #dd3e2b;
+    border-bottom: 120px solid #dd3e2b;
 }
 
 .pokedex-header{
@@ -107,9 +110,21 @@
     width: 100%;
     background: white;
     height: 96px;
+    text-align: center;
+    border-radius: 0 0 0 30px;
+    border-bottom: 30px solid #eefcea;
+    border-left: 5px solid #eefcea;
+    border-top: 12px solid #eefcea;
+    border-right: 5px solid #eefcea;
 }
 
 .pokemon-name{
     color: white;
     font-size: 24px;
+}
+
+.pokedex-content{
+    background-color: #c53827;
+    padding: 20px;
+    height: 280px;
 }
