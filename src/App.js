@@ -63,14 +63,15 @@ class App extends React.Component{
                     <div className="pokemon-avatar">
                       <img src={pokemon.sprites.front_default} />
                     </div>
-                    <h3 className="pokemon-name">{pokemon.name}</h3>
-                    <div className="abilities-list">
-                      {
-                        pokemon.abilities.map((ability, index) => (
-                          <div key={index} className="ability-list_item">{ability.ability.name}</div>
-                        ))
-                      }
-                      <div></div>
+                    <div className="pokemon-description">
+                      <h3 className="pokemon-name">{pokemon.name}</h3>
+                      <div className="abilities-list">
+                        {
+                          pokemon.abilities.map((ability, index) => (
+                            <div key={index} className="ability-list_item">{ability.ability.name}</div>
+                          ))
+                        }
+                      </div>
                     </div>
                   </div>
                 ))
