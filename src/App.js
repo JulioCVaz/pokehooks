@@ -1,13 +1,15 @@
 import React from 'react';
 import './styles/fonts.css';
 import './styles/style.css';
+import PokemonList from './components/PokemonList';
+import PokemonView from './components/PokemonView';
 
 class App extends React.Component{
 
   state = {
     pokemons: [],
     qtdPokemons: 0,
-    pokemonFinded: [],
+    pokemonFound: [],
     selectedPokemon: ''
   }
 
@@ -19,9 +21,9 @@ class App extends React.Component{
 
   handleSearchPokemon = async (pokemonName) => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-    const pokemonFinded = await response.json();
+    const pokemonFound = await response.json();
 
-    this.setState({pokemonFinded: [pokemonFinded]})
+    this.setState({pokemonFound: [pokemonFound]})
   }
 
   activeItem = (e, index) => {
@@ -30,8 +32,7 @@ class App extends React.Component{
   } 
 
   render(){
-    const { pokemons, pokemonFinded, activeIndex } = this.state;
-    console.log(pokemonFinded);
+    const { pokemons, pokemonFound, activeIndex } = this.state;
     return (
       <div className="container">
         <div className="pokedex-moldure">
@@ -42,41 +43,8 @@ class App extends React.Component{
             <div className="circle-tree"></div>
           </div>
           <div className="pokedex-content">
-            <div className="wrapper-list">
-              <nav>
-                <ul className="list-pokemon">
-                  {
-                    pokemons.map((pokemon, index) => (
-                      <li className={ (index === activeIndex) ? "list-pokemon_item active" : "list-pokemon_item"} onClick={(e) => this.activeItem(e, index)} key={index}>
-                        <span className="disabled">{pokemon.url}</span>
-                        {pokemon.name}
-                      </li>
-                    ))
-                  }
-                  </ul>
-                </nav>
-            </div>
-            <div className="wrapper-avatar">
-              {
-                (pokemonFinded.length > 0) && pokemonFinded.map(pokemon => (
-                  <div key={pokemon.id}>
-                    <div className="pokemon-avatar">
-                      <img src={pokemon.sprites.front_default} />
-                    </div>
-                    <div className="pokemon-description">
-                      <h3 className="pokemon-name">{pokemon.name}</h3>
-                      <div className="abilities-list">
-                        {
-                          pokemon.abilities.map((ability, index) => (
-                            <div key={index} className="ability-list_item">{ability.ability.name}</div>
-                          ))
-                        }
-                      </div>
-                    </div>
-                  </div>
-                ))
-              }
-            </div>
+            <PokemonList pokemons={pokemons} activeItem={this.activeItem} activeIndex={activeIndex}/>
+            <PokemonView pokemonFound={pokemonFound} />
           </div>
           <div className="pokedex-controls">
             <div className="plus-direction">+</div>
