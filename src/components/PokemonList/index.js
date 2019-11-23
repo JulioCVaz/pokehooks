@@ -1,43 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-class PokemonList extends React.Component{
+const PokemonList = props => {
+    const [pokemons, setPokemons] = useState([]);
+
+    useEffect(() => {
+      setPokemons(props.pokemons);
+      return () => { console.log("ComponentWillUnMount...")};
+    }, [props.pokemons]);
+
+    return(
+      <div className="wrapper-list">
+        <nav>
+          <ul className="list-pokemon">
+            {
+              pokemons.map((pokemon, index) => (
+                <li className={ (index === props.activeIndex) ? "list-pokemon_item active" : "list-pokemon_item"} onClick={(e) => props.activeItem(e, index)} key={index}>
+                  <span className="disabled">{pokemon.url}</span>
+                  {pokemon.name}
+                </li>
+              ))
+            }
+            </ul>
+          </nav>
+      </div>
+    )
     
-    state = {
-        pokemons: []
-    };
-
-    componentDidMount = () => {
-        console.log("componentDidMount...");
-        this.setState({pokemons: this.props.pokemons});
-    }
-
-    componentDidUpdate = (prevProps) => {
-        console.log("componentDidUpdate...");
-        if(this.props.pokemons !== prevProps.pokemons){
-            this.setState({pokemons: this.props.pokemons});
-        }
-    }
-
-    render(){
-        const { pokemons } = this.state;
-        const {activeItem, activeIndex } = this.props;
-        return(
-            <div className="wrapper-list">
-              <nav>
-                <ul className="list-pokemon">
-                  {
-                    pokemons.map((pokemon, index) => (
-                      <li className={ (index === activeIndex) ? "list-pokemon_item active" : "list-pokemon_item"} onClick={(e) => activeItem(e, index)} key={index}>
-                        <span className="disabled">{pokemon.url}</span>
-                        {pokemon.name}
-                      </li>
-                    ))
-                  }
-                  </ul>
-                </nav>
-            </div>
-        )
-    }
 }
 
 export default PokemonList;

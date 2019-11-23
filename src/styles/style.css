@@ -63,6 +63,8 @@ body{
 }
 
 .pokedex-moldure{
+    width: 500px;
+    height: 566px;
     border-radius: 25px 25px 0 0;
     background-color: #dd3e2b;
     border-left: 5px solid #dd3e2b;

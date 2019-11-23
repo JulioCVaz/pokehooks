@@ -9,7 +9,7 @@ const App = () => {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonFound, setPokemonFound] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const [powerOnOff, setPowerOnOff] = useState(true);
 
   useEffect(() => {
     async function fetchData(){
@@ -20,13 +20,10 @@ const App = () => {
     fetchData();
   }, []);
 
-
   async function handleSearchPokemon(pokemonName){
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
     const pokemonFound = await response.json();
-    setPokemonFound(pokemonFound);
-
-    // this.setState({pokemonFound: [pokemonFound]})
+    setPokemonFound([pokemonFound]);
   }
 
   function activeItem(e, index){
@@ -46,15 +43,19 @@ const App = () => {
           <div className="circle-two"></div>
           <div className="circle-tree"></div>
         </div>
-        <div className="pokedex-content">
-          <PokemonList pokemons={pokemons} activeItem={activeItem} activeIndex={activeIndex}/>
-          <PokemonView pokemonFound={pokemonFound} />
-        </div>
+          {
+            (powerOnOff) && (
+              <div className="pokedex-content">
+                <PokemonList pokemons={pokemons} activeItem={activeItem} activeIndex={activeIndex}/>
+                <PokemonView pokemonFound={pokemonFound} />
+              </div>
+            )
+          }        
         <div className="pokedex-controls">
           <div className="plus-direction">+</div>
           <div className="wrapper-commands">
             <div className="command-one"></div>
-            <div className="command-two"></div>
+            <div className="command-two" onClick={() => setPowerOnOff(!powerOnOff)}></div>
           </div>
         </div>
       </div>
