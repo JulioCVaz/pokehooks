@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/JulioCVaz/pokehooks/hooks/pokedex.png" />
+  <img src="https://raw.githubusercontent.com/JulioCVaz/pokehooks/hooks/pokedex.png" width="400px"/>
 </p>
 
 <h1 align="center">
